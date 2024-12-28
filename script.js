@@ -20,9 +20,17 @@ async function fetchLeadCount() {
   }
   fetch("https://assefautos.kommo.com/api/v4/leads", options)
     .then((res) => res.json())
-    .then((res) => console.log("DEU", res))
-    .catch((err) => console.error("ERROR", err));
+    .then((res) => {
+      document.getElementById("lead-count").textContent = `Total de Leads: deu`;
+      console.log("aqui", res);
+    })
+    .catch((err) => {
+      document.getElementById(
+        "lead-count"
+      ).textContent = `Total de Leads:  nao deu`;
+    });
 }
+
 // Chamando a função ao carregar a página
 document.addEventListener("DOMContentLoaded", async function () {
   await fetchLeadCount();
