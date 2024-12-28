@@ -27,6 +27,9 @@ async function fetchLeadCount() {
     ).textContent = `Total de Leads: ${totalLeads}`;
   } catch (error) {
     console.error("Erro ao buscar leads:", error);
+    document.getElementById(
+      "lead-count"
+    ).textContent = `Total de Leads: ${error}`;
   }
 }
 
