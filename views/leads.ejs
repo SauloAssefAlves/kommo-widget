@@ -1,0 +1,14 @@
+<!-- views/leads.ejs -->
+<html>
+  <head>
+    <title>Leads</title>
+  </head>
+  <body>
+    <h1>Lista de Leads</h1>
+    <ul>
+      <% leads.forEach((lead) => { %>
+        <li><%= lead.name %> - <%= lead.email %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
