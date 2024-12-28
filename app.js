@@ -1,23 +1,33 @@
 import express from "express";
+import axios from "axios";
 import dotenv from "dotenv";
-import leadController from "./public/controllers/leadController.js";
 
-// Configuração das variáveis de ambiente
 dotenv.config();
 
-// Inicialização do servidor
 const app = express();
 const PORT = process.env.PORT || 3000;
+const token = process.env.TOKEN;
 
-// Configurar o EJS como view engine
-app.set("view engine", "ejs");
-app.set("views", "./views");  // Definindo a pasta de views
+// Configurar a pasta "public" para arquivos estáticos
+app.use(express.static("public"));
 
-// Configuração do JSON body parsing
-app.use(express.json());
-
-// Rota para obter os leads
-app.get("/leads", leadController.renderLeadsPage);
+// Endpoint para buscar leads
+app.get("/api/leads", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://assefautos.kommo.com/api/v4/leads",
+      {
+        headers: {
+          accept: "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Iniciar o servidor
 app.listen(PORT, () => {
