@@ -2,6 +2,7 @@
 async function fetchLeadCount() {
   const options = {
     method: "GET",
+    mode: "no-cors",
     headers: {
       accept: "application/json",
       authorization:
