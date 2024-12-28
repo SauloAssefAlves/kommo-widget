@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import leadController from "./controllers/leadController.js";
+import leadController from "./public/controllers/leadController.js";
 
 // Configuração das variáveis de ambiente
 dotenv.config();
