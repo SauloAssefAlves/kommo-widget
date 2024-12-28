@@ -9,6 +9,7 @@ async function fetchLeadCount() {
     },
   };
   function getTotalLeads(data) {
+    console.log(data);
     // Verifica se há leads no objeto `_embedded`
     if (data && data._embedded && data._embedded.leads) {
       // Retorna o número de elementos na lista `leads`
@@ -19,16 +20,8 @@ async function fetchLeadCount() {
   }
   fetch("https://assefautos.kommo.com/api/v4/leads", options)
     .then((res) => res.json())
-    .then((res) => {
-      document.getElementById(
-        "lead-count"
-      ).textContent = `Total de Leads: ${getTotalLeads(res)}`;
-    })
-    .catch((err) => {
-      document.getElementById(
-        "lead-count"
-      ).textContent = `Total de Leads:  ${getTotalLeads(err)}`;
-    });
+    .then((res) => console.log("DEU", res))
+    .catch((err) => console.error("ERROR", err));
 }
 
 // Chamando a função ao carregar a página
